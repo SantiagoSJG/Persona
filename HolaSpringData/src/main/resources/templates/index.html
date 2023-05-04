@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<!-- Para utilizar etiquetas de Thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Inicio</h1>
+
+        <h2>Lista de personas</h2>
+        
+        <div th:if="${personas != null and !personas.isEmpty()}">
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Telefono</th>
+                </tr>
+                <!-- Spring Data 9: Utilizamos el each para recuperar los 
+                datos de la lista -->
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.nombre}"></td>
+                    <td th:text="${persona.apellido}"></td>
+                    <td th:text="${persona.telefono}"></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div th:if="${personas == null or personas.isEmpty()}">
+            <p>Lista vacia</p>
+        </div>
+    </body>
+</html>
